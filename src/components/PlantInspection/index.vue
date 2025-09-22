@@ -38,6 +38,7 @@ const props = defineProps<Props>()
   grid-template-columns: 100px 1fr 100px;
   gap: 16px;
   justify-content: center;
+  cursor: pointer;
 
   img {
     width: 94px;

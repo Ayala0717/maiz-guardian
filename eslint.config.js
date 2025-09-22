@@ -17,7 +17,7 @@ export default defineConfig([
     './src/assets',
   ]),
   {
-    files: ['**/*.{vue}'],
+    files: ['**/*.{ts,tsx,vue}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -29,9 +29,7 @@ export default defineConfig([
       },
     },
     plugins: {
-      'unicorn': eslintPluginUnicorn,
-      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin'))
-        .default,
+      unicorn: eslintPluginUnicorn,
     },
 
     rules: {
@@ -162,6 +160,7 @@ export default defineConfig([
       'vue/html-indent': 'off',
       'no-use-before-define': 'off',
       'vue/require-valid-default-prop': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
     },
   },
 ])
