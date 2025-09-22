@@ -1,5 +1,10 @@
 import { createApp } from 'vue'
 import './style.css'
-import App from './App.vue'
+// Windi CSS
+import 'windi.css'
 
-createApp(App).mount('#app')
+import App from './App.vue'
+import i18n from './modules/i18n'
+import router from './modules/route'
+
+createApp(App).use(i18n).use(router).mount('#app')

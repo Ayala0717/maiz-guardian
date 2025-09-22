@@ -7,8 +7,20 @@
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <HelloWorld :msg="t('hello')" />
 </template>
+
+<script lang="ts">
+import { useI18n } from 'vue-i18n'
+
+export default {
+  name: 'App',
+}
+</script>
+
+<script lang="ts" setup>
+const { t } = useI18n()
+</script>
 
 <style scoped>
 .logo {
