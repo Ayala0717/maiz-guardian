@@ -29,7 +29,9 @@ export default defineConfig([
       },
     },
     plugins: {
-      unicorn: eslintPluginUnicorn,
+      'unicorn': eslintPluginUnicorn,
+      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin'))
+        .default,
     },
 
     rules: {
@@ -143,13 +145,22 @@ export default defineConfig([
       ],
       //vue
       'vue/component-name-in-template-casing': ['error', 'PascalCase'],
-      'vue/max-attributes-per-line': ['warn', { singleline: 5 }],
+      'vue/max-attributes-per-line': [
+        'error',
+        {
+          singleline: {
+            max: 5,
+          },
+          multiline: {
+            max: 5,
+          },
+        },
+      ],
       'vue/multi-word-component-names': 'off',
       'vue/html-self-closing': 'off',
       'vue/html-closing-bracket-newline': 'off',
       'vue/html-indent': 'off',
       'no-use-before-define': 'off',
-      'vue/singleline-html-element-content-newline': 'off',
       'vue/require-valid-default-prop': 'off',
     },
   },
