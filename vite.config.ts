@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite'
+import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
+import WindiCSS from 'vite-plugin-windicss'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,7 +16,13 @@ export default defineConfig({
       importPathTransform: (path: string) =>
         path.endsWith('.svg') ? `${path}?component` : undefined,
     }),
-    vue(),
     Pages(),
+    WindiCSS(),
+    vue(),
   ],
+  resolve: {
+    alias: {
+      '~/': `${path.resolve(__dirname, 'src')}/`,
+    },
+  },
 })
