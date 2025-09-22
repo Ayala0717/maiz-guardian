@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="plant-inspect-card">
     <img :src="props.img" alt="plant image" />
     <div class="plant-info">
       <div>
@@ -31,7 +31,7 @@ const props = defineProps<Props>()
 </script>
 
 <style scoped>
-.card {
+.plant-inspect-card {
   background: #dce8d6;
   border-radius: 12px;
   display: grid;

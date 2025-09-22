@@ -16,23 +16,34 @@ defineOptions({ name: 'HomePage' })
       <div class="plant-container">
         <PlantInspection
           img="https://images.unsplash.com/photo-1529707481702-65fc20926103?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&h=640&s=b7d0d3e9f1c1f9d1d9a1e1a0e0a0"
-          plantName="Trigo"
+          plant-name="Trigo"
           location="Monserat Family"
           status="Sick" />
         <PlantInspection
           img="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          plantName="Mango"
+          plant-name="Mango"
           location="Monserat Family"
           status="Healty" />
         <PlantInspection
           img="https://images.unsplash.com/photo-1517025423291-770fb99ae547?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          plantName="Cactus"
+          plant-name="Cactus"
           location="Monserat Family"
           status="Healty" />
       </div>
 
-      <h3>My plants</h3>
-      <div class="card">Tarjetas de plantas (placeholder)</div>
+      <div class="my-plants">
+        <h3>My plants</h3>
+        <div class="my-plants-container">
+          <PlantBox
+            img="https://plus.unsplash.com/premium_photo-1681290358247-c160fc097bdb?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            plant-name="Cactus"
+            plant-status="Healthy" />
+          <PlantBox
+            img="https://images.unsplash.com/photo-1605185189315-fc269c231e41?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            plant-name="Lemon tree"
+            plant-status="Sick" />
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -67,5 +78,31 @@ defineOptions({ name: 'HomePage' })
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.my-plants-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.my-plants {
+  margin-top: 32px;
+}
+
+.plant-box-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-color: #055b1d;
+  border-width: 2px;
+  background-color: #e6f2e9;
+  border-radius: 16px;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
 }
 </style>
