@@ -58,7 +58,9 @@
 </template>
 <script lang="ts">
 import { onMounted, reactive } from 'vue'
+import { useRoute } from 'vue-router'
 import { LOCAL_STORAGE_KEYS } from '~/contants/localStorage'
+import { getPlant } from '~/utils/database'
 import { getLocalStorage } from '~/utils/storage'
 import type { PlantComponent } from '~/types/models/plantComponent'
 
@@ -68,12 +70,19 @@ export default {
 </script>
 
 <script setup lang="ts">
+const route = useRoute()
+
+const routeId = route.params.id
+
 const state = reactive({
   plantDetail: {} as PlantComponent,
 })
 
-function getPlantDetail() {
-  state.plantDetail = JSON.parse(getLocalStorage(LOCAL_STORAGE_KEYS.PLANT))
+async function getPlantDetail() {
+  const response = await getPlant(String(routeId))
+
+  if (response) state.plantDetail = response
+  else state.plantDetail = JSON.parse(getLocalStorage(LOCAL_STORAGE_KEYS.PLANT))
 }
 
 onMounted(() => {

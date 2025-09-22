@@ -103,7 +103,10 @@ const takePhoto = () => {
 
   // Stop camera and navigate to naming page
   stopCamera()
+
+  // Save image to local storage
   setLocalStorage(LOCAL_STORAGE_KEYS.CAPTURED_IMAGE, capturedImage.value)
+
   router.push('/admin/camera/name')
 }
 

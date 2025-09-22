@@ -26,10 +26,12 @@
 </template>
 
 <script lang="ts">
+import dayjs from 'dayjs'
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { LOCAL_STORAGE_KEYS } from '~/contants/localStorage'
 import { confirm } from '~/utils/alerts'
+import { addPlant } from '~/utils/database'
 import { getLocalStorage } from '~/utils/storage'
 
 export default {
@@ -55,6 +57,18 @@ const saveProduct = () => {
     })
     return
   }
+
+  // Save product name to indexeddb
+  addPlant({
+    id: String(Date.now() + Math.random()),
+    img: capturedImage.value,
+    plantName: productName.value,
+    status: 'Healthy',
+    location: 'Monserat Family',
+    date: dayjs().format('YYYY/MM/DD'),
+    contactName: 'Jose Escobar',
+    contactRole: 'Agricultor',
+  })
 
   // Navigate back to home or plants list
   router.push('/admin/plants')
