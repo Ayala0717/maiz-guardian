@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import './style.css'
+import 'iconify-icon'
 // Windi CSS
 import 'windi.css'
 

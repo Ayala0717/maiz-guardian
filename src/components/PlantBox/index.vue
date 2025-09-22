@@ -1,25 +1,38 @@
 <template>
-  <div class="plant-box-container">
+  <div class="plant-box-container" @click="handleClick">
     <img :src="props.img" alt="plant image" />
     <h3>{{ props.plantName }}</h3>
-    <p>{{ props.plantStatus }}</p>
+    <p>{{ props.status }}</p>
   </div>
 </template>
 
 <script lang="ts">
+import type { PlantComponent as Props } from '~/types/models/plantComponent'
+
 export default {
   name: 'PlantBox',
 }
 </script>
 
 <script setup lang="ts">
-interface Props {
-  img: string
-  plantName: string
-  plantStatus: string
-}
-
 const props = defineProps<Props>()
+
+const emit = defineEmits(['handleClick'])
+
+function handleClick() {
+  const plantInfo = {
+    id: props.id,
+    img: props.img,
+    plantName: props.plantName,
+    location: props.location,
+    date: props.date,
+    contactName: props.contactName,
+    contactRole: props.contactRole,
+    status: props.status,
+  }
+
+  emit('handleClick', plantInfo)
+}
 </script>
 
 <style scoped>
@@ -31,6 +44,7 @@ const props = defineProps<Props>()
   border-width: 2px;
   background-color: #e6f2e9;
   border-radius: 16px;
+  cursor: pointer;
 
   img {
     width: 100%;

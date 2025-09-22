@@ -1,5 +1,5 @@
 <template>
-  <div class="plant-inspect-card">
+  <div class="plant-inspect-card" @click="handleClick">
     <img :src="props.img" alt="plant image" />
     <div class="plant-info">
       <div>
@@ -14,20 +14,32 @@
 </template>
 
 <script lang="ts">
+import type { PlantComponent as Props } from '~/types/models/plantComponent'
+
 export default {
   name: 'PlantInspection',
 }
 </script>
 
 <script setup lang="ts">
-interface Props {
-  img: string
-  plantName: string
-  location: string
-  status: string
-}
-
 const props = defineProps<Props>()
+
+const emit = defineEmits(['handleClick'])
+
+function handleClick() {
+  const plantInfo = {
+    id: props.id,
+    img: props.img,
+    plantName: props.plantName,
+    location: props.location,
+    date: props.date,
+    contactName: props.contactName,
+    contactRole: props.contactRole,
+    status: props.status,
+  }
+
+  emit('handleClick', plantInfo)
+}
 </script>
 
 <style scoped>
