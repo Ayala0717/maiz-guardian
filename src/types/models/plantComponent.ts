@@ -7,4 +7,5 @@ export interface PlantComponent {
   status?: string
   contactName?: string
   contactRole?: string
+  removeIcon?: boolean
 }

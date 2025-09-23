@@ -51,7 +51,7 @@ const getAllPlants = async (): Promise<PlantComponent[]> => {
   })
 }
 // Delete a plant
-const deletePlan = async (id: number): Promise<void> => {
+const deletePlant = async (id: string): Promise<void> => {
   const db = await openDB()
   const transaction = db.transaction(DATABASE_KEYS.storeName, 'readwrite')
   const store = transaction.objectStore(DATABASE_KEYS.storeName)
@@ -73,4 +73,4 @@ const updatePlant = async (plant: PlantComponent): Promise<PlantComponent> => {
   })
 }
 
-export { addPlant, getPlant, getAllPlants, deletePlan, updatePlant }
+export { addPlant, getPlant, getAllPlants, deletePlant, updatePlant }

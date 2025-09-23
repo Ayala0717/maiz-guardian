@@ -60,7 +60,7 @@ const saveProduct = () => {
 
   // Save product name to indexeddb
   addPlant({
-    id: String(Date.now() + Math.random()),
+    id: String(Math.round(Date.now() + Math.random())),
     img: capturedImage.value,
     plantName: productName.value,
     status: 'Healthy',

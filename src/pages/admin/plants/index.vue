@@ -6,6 +6,7 @@
         v-for="plant in state.plants"
         :id="plant.id"
         :key="plant.id"
+        remove-icon
         :img="plant.img"
         :plant-name="plant.plantName"
         :status="plant.status"
@@ -13,7 +14,8 @@
         :date="plant.date"
         :contact-name="plant.contactName"
         :contact-role="plant.contactRole"
-        @handle-click="handleClick" />
+        @handle-click="handleClick"
+        @removed-plant="handleRemovedPlant" />
     </div>
   </section>
 </template>
@@ -50,6 +52,10 @@ async function getPlants() {
 
 const handleClick = (plantInfo: PlantComponent) => {
   route.push({ name: 'plant-details', params: { id: plantInfo.id } })
+}
+
+function handleRemovedPlant(id: string) {
+  state.plants = state.plants.filter((plant) => plant.id !== id)
 }
 </script>
 
