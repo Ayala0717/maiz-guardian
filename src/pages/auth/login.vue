@@ -1,7 +1,3 @@
-<script setup lang="ts">
-defineOptions({ name: 'LoginPage' })
-</script>
-
 <template>
   <section class="container">
     <div class="logo">MAIZGUARDIAN (logo)</div>
@@ -11,17 +7,25 @@ defineOptions({ name: 'LoginPage' })
     </div>
 
     <label>Tu Email</label>
-    <input class="input" placeholder="contact@gmail.com" />
+    <input
+      v-model="state.email"
+      class="input"
+      type="email"
+      placeholder="ejemplo@ejemplo.com" />
 
     <label>Contraseña</label>
-    <input class="input" type="password" placeholder="••••••••" />
+    <input
+      v-model="state.password"
+      class="input"
+      type="password"
+      placeholder="******" />
 
     <div class="row">
       <span class="muted">Wrong password</span>
       <RouterLink to="/auth/forgot">¿Olvidaste tu contraseña?</RouterLink>
     </div>
 
-    <button class="btn">Continuar</button>
+    <button class="btn" @click="handleLogin">Continuar</button>
 
     <div class="or"><span>Or</span></div>
 
@@ -32,6 +36,42 @@ defineOptions({ name: 'LoginPage' })
     </p>
   </section>
 </template>
+
+<script lang="ts">
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { confirm } from '~/utils/alerts'
+
+export default {
+  name: 'LoginPage',
+}
+</script>
+
+<script setup lang="ts">
+defineOptions({ name: 'LoginPage' })
+
+const router = useRouter()
+
+const state = reactive({
+  email: '',
+  password: '',
+})
+
+function handleLogin() {
+  if (!state.email.trim() || !state.password.trim()) {
+    confirm({
+      title: 'Error',
+      text: 'Por favor ingresa un email y una contraseña válidos',
+      icon: 'error',
+      confirmButtonText: 'Aceptar',
+      showCancelButton: false,
+    })
+    return
+  }
+
+  router.push('/admin/home')
+}
+</script>
 
 <style scoped>
 .container {

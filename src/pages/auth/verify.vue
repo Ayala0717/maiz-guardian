@@ -1,7 +1,3 @@
-<script setup lang="ts">
-defineOptions({ name: 'VerifyCodePage' })
-</script>
-
 <template>
   <section class="container">
     <h2>Check your email</h2>
@@ -10,18 +6,68 @@ defineOptions({ name: 'VerifyCodePage' })
     </p>
 
     <div class="code">
-      <input maxlength="1" />
-      <input maxlength="1" />
-      <input maxlength="1" />
-      <input maxlength="1" />
-      <input maxlength="1" />
+      <input v-model="state.firstInput" maxlength="1" inputmode="numeric" />
+      <input v-model="state.secondInput" maxlength="1" inputmode="numeric" />
+      <input v-model="state.thirdInput" maxlength="1" inputmode="numeric" />
+      <input v-model="state.fourthInput" maxlength="1" inputmode="numeric" />
+      <input v-model="state.fifthInput" maxlength="1" inputmode="numeric" />
+      <input v-model="state.sixthInput" maxlength="1" inputmode="numeric" />
     </div>
 
-    <button class="btn">Verify Code</button>
+    <button class="btn" @click="handleVerify">Continuar</button>
 
     <p class="muted">¿No te llegó el correo? <a href="#">Reenviar</a></p>
   </section>
 </template>
+
+<script lang="ts">
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { confirm } from '~/utils/alerts'
+
+export default {
+  name: 'VerifyCodePage',
+}
+</script>
+
+<script setup lang="ts">
+defineOptions({ name: 'VerifyCodePage' })
+
+const router = useRouter()
+
+const state = reactive({
+  firstInput: '',
+  secondInput: '',
+  thirdInput: '',
+  fourthInput: '',
+  fifthInput: '',
+  sixthInput: '',
+})
+
+function handleVerify() {
+  if (
+    !state.firstInput.trim() ||
+    !state.secondInput.trim() ||
+    !state.thirdInput.trim() ||
+    !state.fourthInput.trim() ||
+    !state.fifthInput.trim() ||
+    !state.sixthInput.trim()
+  ) {
+    confirm({
+      title: 'Error',
+      text: 'Por favor ingresa un código válido',
+      icon: 'error',
+      confirmButtonText: 'Aceptar',
+      showCancelButton: false,
+    })
+
+    return
+  }
+
+  // Send verification code to backend
+  router.push('/auth/success')
+}
+</script>
 
 <style scoped>
 .container {
