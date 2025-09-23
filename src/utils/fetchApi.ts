@@ -1,5 +1,6 @@
 import { getAuthorizationHeader } from './authorizationHeader'
 import { isEmptyObject } from './object'
+import { mainApi } from '~/constants'
 import PostPutError from '~/errors/post-put-error'
 import type {
   ApiService,
@@ -51,7 +52,9 @@ export function fetchApiService<T>(
         }
       }
 
-      const fetched = await fetch(completeUrl, fetchOptions)
+      const endpoint = `${mainApi}/${completeUrl}`
+
+      const fetched = await fetch(endpoint, fetchOptions)
       const response = await fetched.json()
       const status = fetched.status
       const success = fetched.ok
