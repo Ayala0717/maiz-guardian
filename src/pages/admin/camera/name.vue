@@ -46,6 +46,19 @@ const router = useRouter()
 const productName = ref('')
 const capturedImage = ref('')
 
+const status = {
+  0: 'Healthy',
+  1: 'Sick',
+}
+
+function getRandomInt(max: number): keyof typeof status {
+  return Math.floor(Math.random() * max) as keyof typeof status
+}
+
+function getRandomStatus() {
+  return status[getRandomInt(2)]
+}
+
 const saveProduct = () => {
   if (!productName.value.trim()) {
     confirm({
@@ -63,7 +76,7 @@ const saveProduct = () => {
     id: String(Math.round(Date.now() + Math.random())),
     img: capturedImage.value,
     plantName: productName.value,
-    status: 'Healthy',
+    status: getRandomStatus(),
     location: 'Monserat Family',
     date: dayjs().format('YYYY/MM/DD'),
     contactName: 'Jose Escobar',
