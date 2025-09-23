@@ -12,9 +12,9 @@
         <img src="../assets/home.svg" alt="Home" />
       </RouterLink>
       <RouterLink
-        to="/admin/inspections"
+        to="/admin/workers"
         class="tab"
-        :class="{ active: isActive('/inspections') }">
+        :class="{ active: isActive('/workers') }">
         <img src="../assets/lines.svg" alt="Inspections" />
       </RouterLink>
       <RouterLink
@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
 const route = useRoute()
-const isActive = (path = '') => route.path.startsWith(path)
+const isActive = (path = '') => route.path.includes(path)
 </script>
 
 <style scoped>
