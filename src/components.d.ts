@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ContactInfo: typeof import('./components/ContactInfo/index.vue')['default']
     MainLayout: typeof import('./layouts/MainLayout.vue')['default']
     PlantBox: typeof import('./components/PlantBox/index.vue')['default']
     PlantInspection: typeof import('./components/PlantInspection/index.vue')['default']
