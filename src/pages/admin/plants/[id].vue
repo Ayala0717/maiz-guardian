@@ -1,9 +1,7 @@
 <template>
   <header class="hero">
     <div class="header-container">
-      <span class="back-button">
-        <RouterLink to="/admin/home">&laquo;</RouterLink>
-      </span>
+      <span class="back-button" @click="router.back()"> &laquo; </span>
       <img :src="state.plantDetail.img" alt="plant image" />
     </div>
   </header>
@@ -58,7 +56,7 @@
 </template>
 <script lang="ts">
 import { onMounted, reactive } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { LOCAL_STORAGE_KEYS } from '~/contants/localStorage'
 import { getPlant } from '~/utils/database'
 import { getLocalStorage } from '~/utils/storage'
@@ -71,6 +69,7 @@ export default {
 
 <script setup lang="ts">
 const route = useRoute()
+const router = useRouter()
 
 const routeId = route.params.id
 
